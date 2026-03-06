@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mina Seryany - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #00D9FF;
+            --dark: #1a1a2e;
+            --glass: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: rgba(108, 99, 255, 0.3);
+            top: -100px;
+            left: -100px;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 101, 132, 0.25);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -2s;
+        }
+
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: rgba(0, 217, 255, 0.2);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 12, 41, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 30px 50px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            min-height: 70vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: slideLeft 1s ease;
+        }
+
+        @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: slideRight 1s ease;
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .profile-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: white;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(108, 99, 255, 0.4);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero .description {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #5046E5);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid var(--glass-border);
+        }
+
+        .btn-outline:hover {
+            background: var(--glass);
+            border-color: var(--primary);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .stat-item {
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .stat-item:hover {
+            background: var(--glass);
+            transform: scale(1.05);
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+        }
+
+        /* Interactive Cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Skills with Animation */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            padding: 15px 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill:hover::before {
+            left: 100%;
+        }
+
+        .skill:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+        }
+
+        .skill.security {
+            border-color: rgba(255, 101, 132, 0.3);
+        }
+
+        .skill.security:hover {
+            background: var(--secondary);
+            box-shadow: 0 10px 30px rgba(255, 101, 132, 0.4);
+        }
+
+        /* Progress Bars */
+        .progress-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .progress-item {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .progress-item:hover {
+            background: var(--glass);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transition: width 1s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 30px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--dark);
+        }
+
+        .timeline-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item .date {
+            color: var(--accent);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 25px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .contact-card .icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .contact-card.email .icon { background: linear-gradient(135deg, #EA4335, #4285F4); }
+        .contact-card.instagram .icon { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+        .contact-card.github .icon { background: linear-gradient(135deg, #333, #666); }
+        .contact-card.linkedin .icon { background: linear-gradient(135deg, #0077B5, #00A0DC); }
+
+        .contact-card h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .contact-card p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Toggle Content */
+        .content-toggle {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .content-toggle.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tab Buttons */
+        .tab-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 28px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-bottom: 30px;
+            }
+
+            .profile-img {
+                width: 220px;
+                height: 220px;
+                font-size: 70px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ===================================
+           Modern Photo Gallery Styles
+           =================================== */
+
+        /* Gallery Filters */
+        .gallery-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 12px 28px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+        }
+
+        /* Masonry Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            grid-auto-rows: 250px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .placeholder-img {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Overlay */
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.2) 50%,
+                transparent 100%
+            );
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-info {
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-info {
+            transform: translateY(0);
+        }
+
+        .gallery-info i {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 15px;
+            animation: pulse-icon 2s infinite;
+        }
+
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .gallery-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .gallery-info p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Load More Button */
+        .gallery-load-more {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .gallery-load-more .btn {
+            min-width: 180px;
+        }
+
+        /* ===================================
+           Lightbox Modal Styles
+           =================================== */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 45px;
+            height: 45px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 55px;
+            height: 55px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-nav.prev {
+            left: -80px;
+        }
+
+        .lightbox-nav.next {
+            right: -80px;
+        }
+
+        .lightbox-caption {
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .lightbox-caption h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .lightbox-caption p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Gallery Animation on Scroll */
+        .gallery-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Gallery */
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 200px;
+            }
+
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+
+            .lightbox-nav.prev {
+                left: 10px;
+            }
+
+            .lightbox-nav.next {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 250px;
+            }
+
+            .gallery-filters {
+                gap: 8px;
+            }
+
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">MS</div>
+        <div class="nav-links">
+            <a href="#home" class="active" onclick="setActive(this)">Home</a>
+            <a href="#about" onclick="setActive(this)">About</a>
+            <a href="#skills" onclick="setActive(this)">Skills</a>
+            <a href="#projects" onclick="setActive(this)">Projects</a>
+            <a href="#journey" onclick="setActive(this)">Journey</a>
+            <a href="#gallery" onclick="setActive(this)">Gallery</a>
+            <a href="#contact" onclick="setActive(this)">Contact</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Mina Seryany</span></h1>
+                <p class="subtitle">Future Cyber Security Specialist</p>
+                <p class="description">
+                    Computer Science student passionate about programming and technology. 
+                    Dedicated to learning modern tech and building a career in Cyber Security.
+                    Always eager to explore new technologies and improve my skills!
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                    <a href="#projects" class="btn btn-outline">
+                        <i class="fas fa-folder"></i> My Projects
+                    </a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item" onclick="animateNumber(this, 3, 'Projects')">
+                        <h3>3</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat-item" onclick="animateNumber(this, 2, 'Languages')">
+                        <h3>2</h3>
+                        <p>Languages</p>
+                    </div>
+                    <div class="stat-item" onclick="animateNumber(this, 6, 'Skills')">
+                        <h3>6</h3>
+                        <p>Skills</p>
+                    </div>
+                </div>
+            </div>
+<div class="hero-image">
+                <div class="profile-img">
+                    <img src="photo_٢٠٢٦-٠٣-٠١_٢١-٤١-٢٧.jpg" alt="Mina Seryany" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <h2 class="section-title"><i class="fas fa-user"></i> About Me</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="toggleCard(this)">
+                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Student</h3>
+                    <p>Computer Science student at Faculty of Computers and Information. Passionate about learning new technologies and applying them in real-world projects.</p>
+                </div>
+                <div class="card" onclick="toggleCard(this)">
+                    <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Cyber Security Interest</h3>
+                    <p>Aspiring to become a Cyber Security Specialist. Focused on learning security fundamentals, network protection, and ethical hacking.</p>
+                </div>
+                <div class="card" onclick="toggleCard(this)">
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Developer</h3>
+                    <p>Skilled in HTML, CSS, Python, and C++. Love building useful applications and exploring the world of programming.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <h2 class="section-title"><i class="fas fa-code"></i> Skills & Tools</h2>
+            
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('languages')">Languages</button>
+                <button class="tab-btn" onclick="showTab('frameworks')">Frameworks</button>
+                <button class="tab-btn" onclick="showTab('tools')">Tools</button>
+            </div>
+
+            <!-- Languages Tab -->
+            <div id="languages" class="content-toggle active">
+                <div class="skills-container">
+                    <div class="skill" onclick="showSkillLevel(this, 'HTML', 95)">HTML</div>
+                    <div class="skill" onclick="showSkillLevel(this, 'CSS', 90)">CSS</div>
+                    <div class="skill" onclick="showSkillLevel(this, 'Python', 80)">Python</div>
+                    <div class="skill" onclick="showSkillLevel(this, 'C++', 70)">C++</div>
+                </div>
+                <div class="progress-grid" style="margin-top: 30px;" id="skill-progress"></div>
+            </div>
+
+            <!-- Frameworks Tab -->
+            <div id="frameworks" class="content-toggle">
+                <div class="skills-container">
+                    <div class="skill">Coming Soon...</div>
+                </div>
+            </div>
+
+            <!-- Tools Tab -->
+            <div id="tools" class="content-toggle">
+                <div class="skills-container">
+                    <div class="skill" onclick="showSkillLevel(this, 'VS Code', 95)">VS Code</div>
+                    <div class="skill" onclick="showSkillLevel(this, 'Git', 75)">Git</div>
+                    <div class="skill" onclick="showSkillLevel(this, 'Linux', 60)">Linux</div>
+                </div>
+                <div class="progress-grid" style="margin-top: 30px;" id="skill-progress-tools"></div>
+            </div>
+
+            <!-- Security Skills -->
+            <h3 style="margin: 40px 0 25px; font-size: 24px;"><i class="fas fa-shield-alt" style="color: var(--secondary);"></i> Cyber Security</h3>
+            <div class="skills-container">
+                <div class="skill security" onclick="showSkillLevel(this, 'Network Security', 65)">Network Security</div>
+                <div class="skill security" onclick="showSkillLevel(this, 'Security Basics', 75)">Security Basics</div>
+                <div class="skill security" onclick="showSkillLevel(this, 'Ethical Hacking', 50)">Ethical Hacking</div>
+                <div class="skill security" onclick="showSkillLevel(this, 'Penetration Testing', 40)">Penetration Testing</div>
+            </div>
+            <div class="progress-grid" style="margin-top: 30px;" id="skill-progress-security"></div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <h2 class="section-title"><i class="fas fa-folder"></i> My Projects</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="openProject(this)">
+                    <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>BMI Calculator</h3>
+                    <p>A Body Mass Index calculator built with Python. Helps users calculate their BMI and understand their health status.</p>
+                </div>
+                <div class="card" onclick="openProject(this)">
+                    <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Simple Calculator</h3>
+                    <p>A basic calculator application with support for all mathematical operations. Built using Python.</p>
+                </div>
+                <div class="card" onclick="openProject(this)">
+                    <div class="card-icon"><i class="fas fa-user"></i></div>
+                    <h3>Personal Website</h3>
+                    <p>A professional personal portfolio website showcasing skills, projects, and contact information.</p>
+                </div>
+                <div class="card" onclick="openProject(this)">
+                    <div class="card-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Password Generator (Coming)</h3>
+                    <p>Secure password generator tool coming soon! Will help create strong, random passwords.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="section" id="journey">
+            <h2 class="section-title"><i class="fas fa-road"></i> My Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item" onclick="expandTimeline(this)">
+                    <h3>Started Programming Journey</h3>
+                    <p class="date">2024</p>
+                    <p>Began learning HTML and CSS to build websites. Discovered my passion for technology and programming.</p>
+                </div>
+                <div class="timeline-item" onclick="expandTimeline(this)">
+                    <h3>Learned Python & C++</h3>
+                    <p class="date">2024 - 2025</p>
+                    <p>Expanded programming skills with Python and C++. Built several projects including calculator and BMI calculator.</p>
+                </div>
+                <div class="timeline-item" onclick="expandTimeline(this)">
+                    <h3>Discovered Cyber Security</h3>
+                    <p class="date">2025</p>
+                    <p>Found passion for Cyber Security. Started learning security basics and network protection concepts.</p>
+                </div>
+                <div class="timeline-item" onclick="expandTimeline(this)">
+                    <h3>Building Future</h3>
+                    <p class="date">Present & Future</p>
+                    <p>Continuing to learn and grow. Working towards becoming a professional Cyber Security Specialist.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Languages I Speak -->
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+            <div class="cards-grid">
+                <div class="card" onclick="toggleCard(this)">
+                    <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+                    <h3>Arabic</h3>
+                    <p>Native language - Full professional proficiency</p>
+                </div>
+                <div class="card" onclick="toggleCard(this)">
+                    <div class="card-icon"><i class="fas fa-globe"></i></div>
+                    <h3>English</h3>
+                    <p>Professional working proficiency - Can communicate effectively</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section class="section" id="gallery">
+            <h2 class="section-title"><i class="fas fa-images"></i> My Gallery</h2>
+            
+            <!-- Filter Buttons -->
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="personal">Personal</button>
+                <button class="filter-btn" data-filter="projects">Projects</button>
+                <button class="filter-btn" data-filter="certificates">Certificates</button>
+            </div>
+
+            <!-- Modern Masonry Gallery -->
+            <div class="gallery-grid">
+                <!-- Photo 1 -->
+                <div class="gallery-item" data-category="personal" onclick="openLightbox(this)">
+                    <img src="WhatsApp Image 2026-03-06 at 11.39.57 PM (1).jpeg" alt="Personal Photo 1">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Personal Photo</h4>
+                            <p>Personal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="gallery-item" data-category="personal" onclick="openLightbox(this)">
+                    <img src="WhatsApp Image 2026-03-06 at 11.39.57 PM.jpeg" alt="Personal Photo 2">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Memory Moment</h4>
+                            <p>Personal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="gallery-item tall" data-category="personal" onclick="openLightbox(this)">
+                    <img src="WhatsApp Image 2026-03-06 at 11.39.58 PM (1).jpeg" alt="Photo 3">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Special Moment</h4>
+                            <p>Personal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="gallery-item" data-category="personal" onclick="openLightbox(this)">
+                    <img src="WhatsApp Image 2026-03-06 at 11.39.58 PM.jpeg" alt="Photo 4">
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Beautiful Memory</h4>
+                            <p>Personal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 5 -->
+                <div class="gallery-item wide" data-category="projects" onclick="openLightbox(this)">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Project Preview</h4>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo 6 -->
+                <div class="gallery-item" data-category="certificates" onclick="openLightbox(this)">
+                    <div class="placeholder-img" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-info">
+                            <i class="fas fa-expand"></i>
+                            <h4>Certificate</h4>
+                            <p>Certificates</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="gallery-load-more">
+                <button class="btn btn-outline" onclick="loadMorePhotos()">
+                    <i class="fas fa-plus"></i> Load More
+                </button>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <button class="lightbox-close" onclick="closeLightbox()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <button class="lightbox-nav prev" onclick="navigateLightbox(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <img id="lightbox-img" src="" alt="">
+                <div class="lightbox-caption">
+                    <h3 id="lightbox-title"></h3>
+                    <p id="lightbox-category"></p>
+                </div>
+                <button class="lightbox-nav next" onclick="navigateLightbox(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <div class="contact-grid">
+                <a href="mailto:Minasar326@gmail.com" class="contact-card email">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>Minasar326@gmail.com</p>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="contact-card instagram">
+                    <div class="icon"><i class="fab fa-instagram"></i></div>
+                    <div>
+                        <h4>Instagram</h4>
+                        <p>@mina_seryany</p>
+                    </div>
+                </a>
+                <a href="https://github.com" target="_blank" class="contact-card github">
+                    <div class="icon"><i class="fab fa-github"></i></div>
+                    <div>
+                        <h4>GitHub</h4>
+                        <p>@MinaSeryany</p>
+                    </div>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="contact-card linkedin">
+                    <div class="icon"><i class="fab fa-linkedin"></i></div>
+                    <div>
+                        <h4>LinkedIn</h4>
+                        <p>Connect with me</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Mina Seryany. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 14px;">Built with <i class="fas fa-heart" style="color: var(--secondary);"></i> and lots of <i class="fas fa-coffee"></i></p>
+    </footer>
+
+    <!-- Language Toggle Button -->
+    <div class="lang-toggle">
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <i class="fas fa-globe"></i> AR
+        </button>
+    </div>
+
+    <script>
+        // Tab functionality
+        function showTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.content-toggle').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Skill level progress bar
+        function showSkillLevel(element, skillName, level) {
+            let containerId = 'skill-progress';
+            if (document.getElementById('frameworks').classList.contains('active')) {
+                containerId = 'skill-progress-frameworks';
+            } else if (document.getElementById('tools').classList.contains('active')) {
+                containerId = 'skill-progress-tools';
+            } else if (element.classList.contains('security')) {
+                containerId = 'skill-progress-security';
+            }
+            
+            const container = document.getElementById(containerId);
+            const existingBar = container.querySelector(`[data-skill="${skillName}"]`);
+            if (existingBar) {
+                existingBar.remove();
+            }
+            
+            const progressHTML = `
+                <div class="progress-item" data-skill="${skillName}">
+                    <div class="progress-header">
+                        <span>${skillName}</span>
+                        <span>${level}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%;" data-width="${level}%"></div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('afterbegin', progressHTML);
+            
+            // Animate the bar
+            setTimeout(() => {
+                container.querySelector('.progress-fill').style.width = level + '%';
+            }, 100);
+        }
+
+        // Card toggle animation
+        function toggleCard(element) {
+            element.style.transform = element.style.transform === 'scale(1.05)' 
+                ? 'scale(1)' 
+                : 'scale(1.05)';
+        }
+
+        // Project open animation
+        function openProject(element) {
+            element.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                element.style.transform = 'translateY(-10px)';
+            }, 150);
+        }
+
+        // Timeline expand
+        function expandTimeline(element) {
+            const allItems = document.querySelectorAll('.timeline-item');
+            allItems.forEach(item => {
+                if (item !== element) {
+                    item.style.transform = 'scale(0.98)';
+                    item.style.opacity = '0.7';
+                }
+            });
+            element.style.transform = 'scale(1.02)';
+            element.style.opacity = '1';
+            
+            setTimeout(() => {
+                allItems.forEach(item => {
+                    item.style.transform = '';
+                    item.style.opacity = '';
+                });
+            }, 2000);
+        }
+
+        // Animate numbers on click
+        function animateNumber(element, target, label) {
+            let current = 0;
+            const increment = target / 20;
+            const h3 = element.querySelector('h3');
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                h3.textContent = Math.floor(current);
+            }, 30);
+        }
+
+        // Set active nav link
+        function setActive(element) {
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section, .card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Language toggle function
+        function toggleLanguage() {
+            // This will be replaced with actual language toggle
+            alert('Language toggle coming soon! / تغيير اللغة قادم قريباً!');
+        }
+
+        // ===================================
+        // Gallery Functions
+        // ===================================
+
+        // Gallery Filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all filter buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const filter = this.dataset.filter;
+                const items = document.querySelectorAll('.gallery-item');
+
+                items.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, 50);
+                    } else {
+                        item.classList.remove('visible');
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Lightbox Functions
+        let currentLightboxIndex = 0;
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxCategory = document.getElementById('lightbox-category');
+
+            // Find the index of clicked item
+            currentLightboxIndex = Array.from(galleryItems).indexOf(element);
+
+            // Get image source or placeholder
+            const img = element.querySelector('img');
+            const placeholder = element.querySelector('.placeholder-img');
+            
+            if (img) {
+                lightboxImg.src = img.src;
+                lightboxImg.style.display = 'block';
+            } else if (placeholder) {
+                // For placeholder, create a colored div as the image
+                lightboxImg.style.display = 'block';
+                const bg = placeholder.style.background;
+                lightboxImg.style.background = bg;
+                lightboxImg.style.width = '600px';
+                lightboxImg.style.height = '400px';
+                lightboxImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+            }
+
+            // Get title and category
+            const title = element.querySelector('h4').textContent;
+            const category = element.querySelector('.gallery-info p').textContent;
+            
+            lightboxTitle.textContent = title;
+            lightboxCategory.textContent = category;
+
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function navigateLightbox(direction) {
+            currentLightboxIndex += direction;
+
+            // Wrap around
+            if (currentLightboxIndex < 0) {
+                currentLightboxIndex = galleryItems.length - 1;
+            } else if (currentLightboxIndex >= galleryItems.length) {
+                currentLightboxIndex = 0;
+            }
+
+            // Get the item at new index
+            const newItem = galleryItems[currentLightboxIndex];
+            openLightbox(newItem);
+        }
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') {
+                    navigateLightbox(-1);
+                } else if (e.key === 'ArrowRight') {
+                    navigateLightbox(1);
+                } else if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            }
+        });
+
+        // Load More Photos (Demo)
+        function loadMorePhotos() {
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Loaded!';
+                btn.style.background = 'var(--success-color)';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-plus"></i> Load More';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 2000);
+            }, 1500);
+        }
+
+        // Initialize gallery items animation
+        setTimeout(() => {
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, index * 100);
+            });
+        }, 500);
+    </script>
+</body>
+</html>
+
